@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+  </head>
+  <body x-data="{from: 0, to: 360, s: 80, l: 50, c: 8 }">
+    <div>
+      Hue
+      from <input id="from" type="number" x-model="from"/>
+      to <input id="to" type="number" x-model="to"/>
+    </div>
+    <div>
+      Saturation
+      <input id="s" type="number" x-model="s"/>
+    </div>
+    <div>
+      Lightness
+      <input id="l" type="number" x-model="l"/>
+    </div>
+    <div>
+      Slices
+      <input id="c" type="number" x-model="c"/>
+    </div>
+
+    <template x-for="(item, index) in Array(parseInt(c)).fill(0)" :key="index">
+      <div style="height: 40px; margin-top: 10px; color: white;">
+        <div x-text="index" x-bind:style="`background-color: hsl(${parseInt(from) + parseInt(index) / parseInt(c) * (parseInt(to) - parseInt(from)) }, ${s}%, ${l}%); height: 100%;`">
+        </div>
+      </div>
+    </template>
+  </body>
+</html>
